@@ -1,17 +1,16 @@
-def div(a, b):
-    print(a / b)
-
-
 def smart_div(func):
-
     def inner(a, b):
-        if a > b:
-            a, b = b, a
+        if b == 0:
+            return print("Can't divide by 0")
         return func(a, b)
-
     return inner
 
 
-div = smart_div(div)
+@smart_div
+def div(a, b):
+    return a / b
 
-div(8, 4)
+
+# div = smart_div(div)
+
+print(div(10, 0))
