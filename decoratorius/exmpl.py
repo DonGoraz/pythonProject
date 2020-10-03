@@ -18,6 +18,7 @@ print(div(10, 0))
 
 print("-" * 50)
 
+
 def func(f):
     def wrapper(*args, **kwargs):
         print("Started")
@@ -28,8 +29,8 @@ def func(f):
 
 
 @func
-def func2(x):
-    print(x)
+def func2(x, y):
+    print(y, x)
 
 
 @func
@@ -38,4 +39,34 @@ def func3():
 
 
 func3()
-func2(5)
+func2(5, 6)
+
+print("-" * 50)
+
+
+import time
+
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        rv = func()
+        total = time.time() - start
+        print("Time:", total)
+        return rv
+
+    return wrapper
+
+
+@timer
+def test():
+    for _ in range(100000):
+        pass
+
+
+@timer
+def test2():
+    time.sleep(2)
+
+test()
+test2()
