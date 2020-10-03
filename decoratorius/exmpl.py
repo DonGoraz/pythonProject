@@ -19,17 +19,17 @@ print(div(10, 0))
 print("-" * 50)
 
 def func(f):
-    def wrapper():
+    def wrapper(*args, **kwargs):
         print("Started")
-        f()
+        f(*args, **kwargs)
         print("Ended")
 
     return wrapper
 
 
 @func
-def func2():
-    print("I am func2")
+def func2(x):
+    print(x)
 
 
 @func
@@ -38,4 +38,4 @@ def func3():
 
 
 func3()
-func2()
+func2(5)
