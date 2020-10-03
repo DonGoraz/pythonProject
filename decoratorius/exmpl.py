@@ -1,3 +1,5 @@
+import time
+
 def smart_div(func):
     def inner(a, b):
         if b == 0:
@@ -44,13 +46,10 @@ func2(5, 6)
 print("-" * 50)
 
 
-import time
-
-
-def timer(func):
+def timer(fc):
     def wrapper(*args, **kwargs):
         start = time.time()
-        rv = func()
+        rv = fc()
         total = time.time() - start
         print("Time:", total)
         return rv
@@ -67,6 +66,7 @@ def test():
 @timer
 def test2():
     time.sleep(2)
+
 
 test()
 test2()
